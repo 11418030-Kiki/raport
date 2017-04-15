@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gmail.at.agusumbawa.controller.master.SiswaController">
+   <top>
+      <HBox alignment="BOTTOM_LEFT" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Label style="-fx-background-color: gray;" text="Daftar Siswa" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <bottom>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#doBack" text="&lt;= Kembali" />
+            <TextField fx:id="txtFile" onMouseClicked="#doOpen" prefHeight="25.0" prefWidth="300.0" />
+            <Button mnemonicParsing="false" onAction="#doUpload" text="Upload" />
+        </items>
+      </ToolBar>
+   </bottom>
+   <center>
+      <TableView fx:id="tblSiswa" prefHeight="398.0" prefWidth="420.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="columnNis" prefWidth="75.0" text="NIS" />
+          <TableColumn fx:id="columnNama" prefWidth="75.0" text="NAMA" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+   <left>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <GridPane hgap="10.0" vgap="3.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="NIS" />
+                  <Label text="Nama" GridPane.rowIndex="1" />
+                  <Label text="Tempat Lahir" GridPane.rowIndex="2" />
+                  <Label text="Tanggal Lahir" GridPane.rowIndex="3" />
+                  <Label text="Gender" GridPane.rowIndex="4" />
+                  <Label text="Asal Sekolah" GridPane.rowIndex="5" />
+                  <Label text="Cita-cita" GridPane.rowIndex="6" />
+                  <Label text="Jumlah Saudara" GridPane.rowIndex="7" />
+                  <Label text="Nama Ayah" GridPane.rowIndex="8" />
+                  <Label text="Alamat" GridPane.rowIndex="11" />
+                  <Label text="Agama" GridPane.rowIndex="9" />
+                  <Label text="Kelas" GridPane.rowIndex="10" />
+                  <TextField fx:id="txtNis" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtNama" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtTempatLahir" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtCita" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="txtSaudara" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="txtAyah" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="txtAsalSekolah" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextArea fx:id="areaAlamat" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11" GridPane.rowSpan="2" />
+                  <TextField fx:id="txtGender" layoutX="180.0" layoutY="188.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtTanggalLahir" layoutX="180.0" layoutY="188.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtAgama" layoutX="180.0" layoutY="287.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="txtKelas" layoutX="180.0" layoutY="287.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
