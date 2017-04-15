@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-06T07:15:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Kepribadian" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f3dc9dc0-fb70-4441-961e-a8ec7b2bb600">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="db_ibtidaiyah"/>
+	<parameter name="nis" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+p.pelajaran,
+p.kkm,
+n.nilai
+FROM siswa s
+LEFT JOIN nilai n ON s.nis=n.siswa
+LEFT JOIN pelajaran p ON p.pelajaran=n.pelajaran
+WHERE p.kategori='kepribadian'
+AND s.nis= $P{nis} ]]>
+	</queryString>
+	<field name="pelajaran" class="java.lang.String"/>
+	<field name="nilai" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="280" height="15" uuid="2b7f9eb3-3d4d-4ff3-a91f-658439eb7790"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPRIBADIAN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="278" height="14" uuid="fe9b3565-4b17-4674-859f-1b7be1afec80"/>
+				<textFieldExpression><![CDATA[$F{pelajaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="181" height="14" uuid="bb6f1a71-d48e-44cb-a708-fbe5b176a0e7"/>
+				<textFieldExpression><![CDATA[$F{nilai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

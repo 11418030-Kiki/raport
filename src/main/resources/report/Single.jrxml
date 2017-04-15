@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-06T06:52:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Single" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7c646128-f5d8-435d-aabc-0df517c42580">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="db_ibtidaiyah"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT 
+s.nis,
+s.nama,
+s.kelas,
+s.smester,
+s.ajaran,
+
+p.pelajaran,
+p.kategori,
+p.kkm,
+n.nilai
+FROM siswa s
+	right join bp b ON 
+	 'NULL' = 'NULL' 
+	left join tadarus t ON 
+	 'NULL' = 'NULL' 
+	left join nilai n ON 
+	 'NULL' = 'NULL' 
+	left join pelajaran p ON 
+	 'NULL' = 'NULL']]>
+	</queryString>
+	<field name="nis" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="kelas" class="java.lang.String"/>
+	<field name="smester" class="java.lang.Integer"/>
+	<field name="ajaran" class="java.lang.String"/>
+	<field name="pelajaran" class="java.lang.String"/>
+	<field name="kategori" class="java.lang.String"/>
+	<field name="kkm" class="java.lang.Integer"/>
+	<field name="nilai" class="java.lang.Integer"/>
+	<group name="GroupKategori">
+		<groupHeader>
+			<band height="56">
+				<textField>
+					<reportElement x="180" y="10" width="100" height="30" uuid="e69cbb75-c9d5-4014-84f2-aff28a8ca91b"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{kategori}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="31" width="100" height="30" uuid="27d89078-5bd3-42cb-a8c7-09462b560636"/>
+				<text><![CDATA[pelajaran]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="35a18d25-fa21-4aed-8db2-ac0d4ba18c8f"/>
+				<textFieldExpression><![CDATA[$F{pelajaran}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

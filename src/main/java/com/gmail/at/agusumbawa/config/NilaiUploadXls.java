@@ -1,5 +1,9 @@
 package com.gmail.at.agusumbawa.config;
 
+import com.gmail.at.agusumbawa.dao.NilaiDao;
+import com.gmail.at.agusumbawa.dao.SiswaDao;
+import com.gmail.at.agusumbawa.entity.NilaiModel;
+import com.gmail.at.agusumbawa.entity.SiswaModel;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -11,15 +15,17 @@ import java.util.List;
 /**
  * Created by Agus Suhardi on 2/17/2017.
  */
-public class PelajaranUploadXls {
+public class NilaiUploadXls {
 
-    private static PelajaranDao dao = HibernateUtil.getPelajaranDao();
+    private static NilaiDao dao = HibernateUtil.getNilaiDao();
+    private static SiswaDao siswaDao = HibernateUtil.getSiswaDao();
+
 
 
     private Workbook excelWorkbook;
     private Sheet excelSheet;
 
-    PelajaranUploadXls(String FilePath) throws Exception {
+    NilaiUploadXls(String FilePath) throws Exception {
         File excelFile = new File(FilePath);
         excelWorkbook = Workbook.getWorkbook(excelFile);
         excelSheet = excelWorkbook.getSheet(0);
@@ -34,36 +40,41 @@ public class PelajaranUploadXls {
         }
     }
 
-    public PelajaranUploadXls() {
+    public NilaiUploadXls() {
     }
 
 //    public static void main(String[] args) throws Exception {
 public static void save(String path) throws Exception {
-        PelajaranModel pelajaranData = new PelajaranModel();
+        NilaiModel dataNilai = new NilaiModel();
         List<String> listData = new ArrayList<>();
+        List<SiswaModel> listSiswa = siswaDao.findAll();
+        SiswaModel d;
 
+        NilaiUploadXls tempExcel;
+        tempExcel = new NilaiUploadXls(path);
 
-        PelajaranUploadXls tempExcel;
-        tempExcel = new PelajaranUploadXls(path);
+        for (int ii=0; ii<listSiswa.size(); ii++) {
 
-        for (int i = 1; i < tempExcel.excelSheet.getRows(); i++) {
+            for (int i = 1; i < tempExcel.excelSheet.getRows(); i++) {
 
-            for (int j = 0; j < tempExcel.excelSheet.getColumns(); j++) {
-                //System.out.print(tempExcel.getString(j, i)+ " ");
+                for (int j = 0; j < tempExcel.excelSheet.getColumns(); j++) {
+                    System.out.print(tempExcel.getString(j, i) + " ");
 
-                listData.add(j, tempExcel.getString(j, i));
+                    listData.add(j, tempExcel.getString(j, i));
 //                System.out.println(listData);
+                }
+
+                dataNilai.setPelajaran(listData.get(0));
+                dataNilai.setKkm(Integer.parseInt(listData.get(1)));
+                dataNilai.setKategori(listData.get(2));
+                dataNilai.setNilai(Integer.parseInt(listData.get(3)));
+                dataNilai.setSiswa(listSiswa.get(ii));
+
+                dao.save(dataNilai);
+
+                dataNilai = new NilaiModel();
+                listData = new ArrayList<>();
             }
-
-            pelajaranData.setPelajaran(listData.get(0));
-            pelajaranData.setKkm(Integer.parseInt(listData.get(1)));
-            pelajaranData.setKategori(listData.get(2));
-            pelajaranData.setUrutan_kategori(Integer.parseInt(listData.get(3)));
-
-
-            dao.save(pelajaranData);
-            pelajaranData = new PelajaranModel();
-            listData = new ArrayList<>();
         }
 
     }

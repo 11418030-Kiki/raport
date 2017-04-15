@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-06T06:53:29 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Akademis" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a99b9313-782d-4ab2-ad09-3ea5c5a8d254" whenNoDataType="AllSectionsNoDetail">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="db_ibtidaiyah"/>
+	<parameter name="nis" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+p.pelajaran,
+p.kkm,
+n.nilai
+FROM siswa s
+LEFT JOIN nilai n ON s.nis=n.siswa
+LEFT JOIN pelajaran p ON p.pelajaran=n.pelajaran
+WHERE p.kategori='akademis'
+and s.nis= $P{nis} ]]>
+	</queryString>
+	<field name="pelajaran" class="java.lang.String"/>
+	<field name="kkm" class="java.lang.Integer"/>
+	<field name="nilai" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="220" height="16" uuid="72ba3e3b-3080-441d-b57d-19fc17fd642b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[I. PENILAIAN AKADEMIS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="14" uuid="4addf907-4cad-43a1-a4fd-4b1ce47f8ee5"/>
+				<textFieldExpression><![CDATA[$F{pelajaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="14" uuid="040c723e-67f2-40fd-851c-ca3090e0f06f"/>
+				<textFieldExpression><![CDATA[$F{kkm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="14" uuid="8a3bf4c8-bf4a-4b17-90fa-466c50a27650"/>
+				<textFieldExpression><![CDATA[$F{nilai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

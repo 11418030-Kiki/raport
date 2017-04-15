@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gmail.at.agusumbawa.controller.pegawai.Form">
+<BorderPane fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gmail.at.agusumbawa.controller.pegawai.ListPegawaiController">
    <top>
       <HBox alignment="BOTTOM_LEFT" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -34,16 +34,16 @@
    <bottom>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Tambah" />
-            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#doBack" text="Kembali" />
+          <Button mnemonicParsing="false" onAction="#showTambahPegawai" text="Tambah" />
+            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#showHome" text="&lt;=Home" />
         </items>
       </ToolBar>
    </bottom>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tblPegawai" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="-1.0" text="NIP" />
-          <TableColumn prefWidth="-1.0" text="NAMA" />
+          <TableColumn fx:id="columnNip" prefWidth="-1.0" text="NIP" />
+          <TableColumn fx:id="columnNama" prefWidth="-1.0" text="NAMA" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -83,13 +83,13 @@
                   <Label text="Nomor Hp" GridPane.rowIndex="4" />
                   <Label text="Agama" GridPane.rowIndex="5" />
                   <Label text="Alamat" GridPane.rowIndex="6" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2147483647" />
+                  <TextField fx:id="txtNip" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtNama" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtTTL" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtGender" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtHp" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtAgama" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextArea fx:id="areaAlamat" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2147483647" />
                </children>
             </GridPane>
          </children>

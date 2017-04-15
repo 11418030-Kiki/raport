@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-06T07:29:08 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BPs" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="766d9f4e-13be-4bd2-ae6c-c1f174a8d9cb">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="db_ibtidaiyah"/>
+	<parameter name="nis" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+b.waktu,
+b.pristiwa,
+b.tindakan
+FROM bp as b
+INNER JOIN siswa as s
+ON b.siswa=s.nis
+and s.nis= $P{nis} ]]>
+	</queryString>
+	<field name="waktu" class="java.lang.String"/>
+	<field name="pristiwa" class="java.lang.String"/>
+	<field name="tindakan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="280" height="15" uuid="2e63a94f-f435-4ca6-ab33-6a5e7b9d5cf1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BP]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="13" uuid="bc01962a-a6d9-4dd0-b064-6f1a4c8f60fa"/>
+				<textFieldExpression><![CDATA[$F{waktu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="13" uuid="13600017-5869-48f9-983f-fdbc528a76db"/>
+				<textFieldExpression><![CDATA[$F{pristiwa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="13" uuid="2237e18f-1bb3-409f-b024-6b046af1f09d"/>
+				<textFieldExpression><![CDATA[$F{tindakan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

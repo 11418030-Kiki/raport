@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane fx:id="borderHome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gmail.at.agusumbawa.controller.HomeController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onClose" text="Keluar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Data Master">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showSiswa" text="Siswa" />
+                  <MenuItem mnemonicParsing="false" onAction="#showKosongkan" text="Kosongka Data" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Nilai">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showNilaiSiswa" text="Daftar Siswa" />
+               </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Rapot">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showLaporan" text="Pelajaran" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Pane>
+               <children>
+                  <ImageView fitHeight="389.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../HOME.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -12,115 +12,75 @@ import jxl.Sheet;
 /**
  * Created by Agus Suhardi on 2/17/2017.
  */
-public class UploadXls {
+public class SiswaUploadXls {
+
     private static SiswaDao dao = HibernateUtil.getSiswaDao();
-    private static KelasDao kelasDao = HibernateUtil.getKelasDao();
-    private static NilaiDao nilaiDao = HibernateUtil.getNilaiDao();
-    private static AjaranDao ajaranDao = HibernateUtil.getAjaranDao();
-    private static SmesterDao smesterDao = HibernateUtil.getSmesterDao();
-    private static PelajaranDao pelajaranDao = HibernateUtil.getPelajaranDao();
+    private static NilaiDao daoNilai = HibernateUtil.getNilaiDao();
+
 
     private Workbook excelWorkbook;
     private Sheet excelSheet;
 
-    UploadXls(String FilePath) throws Exception{
-        File excelFile= new File(FilePath);
+    SiswaUploadXls(String FilePath) throws Exception {
+        File excelFile = new File(FilePath);
         excelWorkbook = Workbook.getWorkbook(excelFile);
         excelSheet = excelWorkbook.getSheet(0);
     }
 
-    public String getString(int x, int y) throws Exception{
+    public String getString(int x, int y) throws Exception {
         try {
-            return excelSheet.getCell(x,y).getContents();
+            return excelSheet.getCell(x, y).getContents();
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw new Exception("Data tidak ada");
         }
     }
 
-    public UploadXls() {
+    public SiswaUploadXls() {
     }
 
-    //    public static void main(String[] args) throws Exception {
-public void save(String path) throws Exception {
-        SiswaModel s = new SiswaModel();
-        NilaiModel n = new NilaiModel();
+    //        public static void main(String[] args) throws Exception {
+    public static void save(String path) throws Exception {
+        SiswaModel dataSiswa = new SiswaModel();
+        List<NilaiModel> listNilai = daoNilai.findAll();
+
         List<String> listData = new ArrayList<>();
 
+        SiswaUploadXls tempExcel;
+        tempExcel = new SiswaUploadXls(path);
 
-        UploadXls tempExcel;
-        tempExcel = new UploadXls(path);
-
-        for (int i = 1; i < tempExcel.excelSheet.getRows(); i++) {
+        for (int i = 2; i < tempExcel.excelSheet.getRows(); i++) {
 
             for (int j = 0; j < tempExcel.excelSheet.getColumns(); j++) {
-                //System.out.print(tempExcel.getString(j, i)+ " ");
-
                 listData.add(j, tempExcel.getString(j, i));
-                System.out.println(listData);
-
-
-
             }
 
-            KelasModel k = kelasDao.findById(listData.get(11).trim());
-            AjaranModel ajaran = ajaranDao.findById(listData.get(12).trim());
-            SmesterModel smester = new SmesterModel();
-            smester.setSmester(1);
+            //set value
+            dataSiswa.setNis(listData.get(0));
+            dataSiswa.setNama(listData.get(1));
+            dataSiswa.setGender(listData.get(2));
+            dataSiswa.setAlamat(listData.get(3));
+            dataSiswa.setKelas(listData.get(4));
+            dataSiswa.setAjaran(listData.get(5));
+            dataSiswa.setSmester(Integer.valueOf(listData.get(6)));
+            dataSiswa.setSakit(Integer.valueOf(listData.get(7)));
+            dataSiswa.setIjin(Integer.valueOf(listData.get(8)));
+            dataSiswa.setTk(Integer.valueOf(listData.get(9)));
+            dataSiswa.setTanggal(listData.get(10));
+            dataSiswa.setLokasi(listData.get(11));
+            dataSiswa.setTema(listData.get(12));
+            dataSiswa.setNilai_lapangan(Integer.valueOf(listData.get(13)));
+            dataSiswa.setWali_kelas(listData.get(14));
+            dataSiswa.setNip(listData.get(15));
+            dataSiswa.setCatatan(listData.get(16));
 
+            //simpan siswa
+            dao.save(dataSiswa);
 
-            System.out.println("data ku");
-            System.out.println(k.getKelas());
-            System.out.println(ajaran.getAjaran());
-//            System.out.println(smester.getSmester());
+            //kosongkan object
+            listData = new ArrayList<>();
+            dataSiswa = new SiswaModel();
 
-            if (k != null && ajaran !=null) {
-
-
-                s.setNis(listData.get(0));
-                s.setNama(listData.get(1));
-                s.setTempatLahir(listData.get(2));
-                s.setTanggalLahir(listData.get(3));
-                s.setGender(listData.get(4));
-                s.setAsal_sekolah(listData.get(5));
-                s.setCitaCita(listData.get(6));
-                s.setJumlahSaudara(Integer.parseInt(listData.get(7)));
-                s.setNamaAyah(listData.get(8));
-                s.setAlamat(listData.get(9));
-                s.setAgama(listData.get(10));
-                s.setKelas(k);
-
-                dao.save(s);
-
-                List<PelajaranModel> listPelajaran = pelajaranDao.findAll();
-                for(int u=0; u<listPelajaran.size(); u++) {
-
-                    n.setSiswa(s);
-                    n.setAjaran(ajaran);
-                    n.setPelajaran(pelajaranDao.findById(listPelajaran.get(0).getPelajaran()));
-                    n.setNilai(0);
-                    n.setSmester(smester);
-                    nilaiDao.save(n);
-                    n = new NilaiModel();
-                }
-
-
-
-
-
-                s = new SiswaModel();
-                listData = new ArrayList<>();
-            }else {
-                System.out.println("data kelas belum ada");
-            }
         }
-
     }
-
-
-
-
-
-
-
 }
